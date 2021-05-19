@@ -1,7 +1,7 @@
 
 ## .Net Core Serilog – Enrichers
 
-Serilog enrichers add additional information to the output, which could be quite useful in debugging.
+Serilog enrichers add additional information to the output, which acn be quite useful in debugging.
 
 1.	To make the output smaller, change the appsettings.json file to the following:
   ```JSON
@@ -20,16 +20,34 @@ Serilog enrichers add additional information to the output, which could be quite
   ```
 
 2.	Run the application and notice the output:
+  ![Image alt text](Images/Console-No-Enrichers.png?raw=true)
  
 3.	Now add “Serilog.Enrichers.Environment” ” NuGet package to your project.
-  
+  ![Image alt text](Images/NuGet-Serilog-Enricher-Env.png?raw=true)
+
 4.	In Program.cs, change the  CreateHostBuilder() method to the following:
+    ```C#
+    public static IHostBuilder CreateHostBuilder(string[] args) =>
+        Host.CreateDefaultBuilder(args)
+            .ConfigureWebHostDefaults(webBuilder =>
+            {
+                webBuilder.UseStartup<Startup>();
+            })
+        .UseSerilog((hostingContect, loggerConfiguration) => loggerConfiguration
+            .ReadFrom.Configuration(hostingContect.Configuration)
+            .Enrich.FromLogContext() // <-- Add this
+            .Enrich.WithMachineName() // <-- Add this
+            .Enrich.WithProperty("Assembly", typeof(Program).Assembly.GetName().Name) // <-- Add this
+            .WriteTo.Console(new CompactJsonFormatter())
+        );
+    ```
 
 5.	Run the application again and notice the output:
+  ![Image alt text](Images/Console-Enrichers.png?raw=true)
  
-6.	Notice that we now see the MachineName and Assembly added to the log. 
+6.	Notice that we now see the MachineName and Assembly in the log. 
 
 ### Additional
 There are several different enrichers that you can add check the documentation for more information. 
  
-From [Serilog’s documentation on enrichers](https://github.com/serilog/serilog/wiki/Enrichment)
+[Serilog’s documentation on enrichers](https://github.com/serilog/serilog/wiki/Enrichment)
