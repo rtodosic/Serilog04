@@ -1,5 +1,14 @@
+## Context
+1. [.Net Core Serilog – Basic](https://github.com/rtodosic/Serilog01/)
+2. [.Net Core Serilog – Configuration](https://github.com/rtodosic/Serilog02/)
+3. [.Net Core Serilog - Structured JSON output](https://github.com/rtodosic/Serilog03/)
+4. .Net Core Serilog - Enrichers
+5. [.Net Core Serilog - Custom JSON output](https://github.com/rtodosic/Serilog05/)
+6. [.Net Core Serilog - Adding Sinks](https://github.com/rtodosic/Serilog06/)
 
-## .Net Core Serilog – Enrichers
+This is part 4 of 6.
+
+## 4. .Net Core Serilog – Enrichers
 
 Serilog enrichers add additional information to the output, which acn be quite useful in debugging.
 
