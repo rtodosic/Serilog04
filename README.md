@@ -33,11 +33,13 @@ Serilog enrichers add additional information to the output, which acn be quite u
             {
                 webBuilder.UseStartup<Startup>();
             })
-        .UseSerilog((hostingContect, loggerConfiguration) => loggerConfiguration
-            .ReadFrom.Configuration(hostingContect.Configuration)
-            .Enrich.FromLogContext() // <-- Add this
-            .Enrich.WithMachineName() // <-- Add this
-            .Enrich.WithProperty("Assembly", typeof(Program).Assembly.GetName().Name) // <-- Add this
+        .UseSerilog((hostingContext, loggerConfiguration) => loggerConfiguration
+            .ReadFrom.Configuration(hostingContext.Configuration)
+            //--> Add this Start
+            .Enrich.FromLogContext() 
+            .Enrich.WithMachineName() 
+            .Enrich.WithProperty("Assembly", typeof(Program).Assembly.GetName().Name)
+            //--> Add this Start
             .WriteTo.Console(new CompactJsonFormatter())
         );
     ```

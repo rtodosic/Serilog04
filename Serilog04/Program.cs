@@ -18,8 +18,8 @@ namespace Serilog04
                 {
                     webBuilder.UseStartup<Startup>();
                 })
-            .UseSerilog((hostingContect, loggerConfiguration) => loggerConfiguration
-                .ReadFrom.Configuration(hostingContect.Configuration)
+            .UseSerilog((hostingContext, loggerConfiguration) => loggerConfiguration
+                .ReadFrom.Configuration(hostingContext.Configuration)
                 .Enrich.FromLogContext()
                 .Enrich.WithMachineName()
                 .Enrich.WithProperty("Assembly", typeof(Program).Assembly.GetName().Name)
