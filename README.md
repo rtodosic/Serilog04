@@ -31,7 +31,7 @@ Serilog enrichers add additional information to the output, which acn be quite u
 2.	Run the application and notice the output:
   ![Image alt text](Images/Console-No-Enrichers.png?raw=true)
  
-3.	Now add “Serilog.Enrichers.Environment” ” NuGet package to your project.
+3.	Now add “Serilog.Enrichers.Environment” NuGet package to your project.
   ![Image alt text](Images/NuGet-Serilog-Enricher-Env.png?raw=true)
 
 4.	In Program.cs, change the  CreateHostBuilder() method to the following:
